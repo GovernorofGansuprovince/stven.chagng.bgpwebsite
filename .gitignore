@@ -1,0 +1,17 @@
+$(function () {
+
+    $.ajax({
+        url: '/api/network/cbrInfo/bgpLinkList',
+        dataType: 'json',
+        type: 'GET'
+    })
+        .done(function (responseJsonData) {
+            console.info(responseJsonData);
+            if (responseJsonData != null && responseJsonData != "undifined" && responseJsonData.code == 200) {
+                $(responseJsonData.data).each(function () {
+                    $("#LinkList").append("<option value='" + this.linkId + "' deviceName='" + this.deviceName + "' interfaceName='" + this.interfaceName + "'>" + this.linkId + "</option>");
+
+                })
+            }
+        })
+});
